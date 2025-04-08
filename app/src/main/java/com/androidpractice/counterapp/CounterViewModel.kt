@@ -5,21 +5,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
 //ViewModel : help View(Screen) & Model(data) communicate
-class CounterViewModel : ViewModel() {
+class CounterViewModel() : ViewModel() { // repository can be passed as a parameter
+    private val _repository: CounterRepository = CounterRepository()
+    private val _count = mutableStateOf(_repository.getCounter().count)
 
-    //Model
-    //private variable is not expose to the outside
-    private val _count = mutableStateOf(0) //private variable name에는 _붙이는 것이 custom
-
-    //ViewModel
     //Expose the count(public) as an immutable state
     val count: MutableState<Int> = _count
 
-    fun increment() {
-        _count.value++
+    fun increment() {//View model no longer directly change the variable
+        _repository.incrementCounter()
+        _count.value = _repository.getCounter().count
     }
 
     fun decrement() {
-        _count.value--
+        _repository.decrementCounter()
+        _count.value = _repository.getCounter().count
     }
 }
