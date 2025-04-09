@@ -1,4 +1,19 @@
 # CounterApp
+A simple Counter app built with MVVM patterns.
+Practice MVVM pattern to see the difference and use repository
+
+Features
+- increment
+- decrement
+
+Previews
+<p align="center">
+  <img src="https://github.com/Android-practice/Counter-App/blob/master/images/decrement.png" width="200"/>
+  <img src="https://github.com/Android-practice/Counter-App/blob/master/images/increment.png" width="200"/>
+</p>
+<p>
+   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/rotate.png" width="200"/>
+</p>
 
 
 
