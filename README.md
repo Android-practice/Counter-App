@@ -1,5 +1,9 @@
 # CounterApp
 
+
+
+Key Concept
+
 MVVM 
 MVVM stands for Model - View - ViewModel
 separate the task so make codes easier to understand & maintain & test
@@ -56,7 +60,7 @@ ViewModel helps to keep UI code simple and focused on presenting data (ex. forma
 
 **[bulb emoji]tips2**
 - ViewModel is not a replacement for "onSaveInstanceState"; it doesn't handle all types of configuration changes
-- ViewModel should never contains refrences to Views, Activities, Fragment or any Context( can lead memory leaks)
+- ViewModel should never contains references to Views, Activities, Fragment or any Context( can lead memory leaks)
 
 why mvvm?
 1. separation of concerns
@@ -68,10 +72,30 @@ why mvvm?
     - decoupled, can reuse the same view model across different views or platforms
 
 
-why repository?
+Repository
+Repository is a class that acts as a clean API for data access to the rest of the app(particularly when following the mvvm)
+it abstracts origin of the data(where it came from)
 
-various data sources(db, web..) - repository - app 
+various data sources(network sources, local db,web..) - repository - app(viewModel)
 1)farm 2)market 3) ... - supplier - restaurant
 
 if there is supplier between source and app
-app doesn't need to care/know every time when sources it self/deliver method/etc are changed 
+app doesn't need to care/know every time when sources it self/deliver method/etc are changed
+
+
+why use repository?
+1. decoupling : 
+   - repository allow for decoupling of the data sources from the rest of the app.
+   - ViewModel interacts with a repository, and it doesn't need to know where the data came from.
+2. data aggregation
+   - repository can manage and coordinate data from multiple sources, providing clean API(Application Programming Interfaces)
+3. offline capability 
+   - repository can cache network data (work offline)
+
+   
+Additional Info : APIs
+APIs(Application Programming Interfaces) are sets of rules and protocols that allow one software application to interact with another.
+(doesn't necessarily mean backend api) 
+they define the methods and data formats that applications can use to communicate with each other
+
+In simpler terms, API is a menu in a restaurant, request is an order, response is the dish that served to you 
