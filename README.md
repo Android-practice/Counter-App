@@ -11,7 +11,7 @@ This project is for practicing MVVM to understand its structure and the use of r
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/decrement.png" width="200"/>
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/increment.png" width="200"/>
 </p>
-<p>
+<p align="center">
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/rotate.png" height="200"/>
 </p>
 
