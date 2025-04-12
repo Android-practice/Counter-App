@@ -1,116 +1,126 @@
 # CounterApp
-A simple Counter app built with MVVM patterns.
-Practice MVVM pattern to see the difference and use repository
+A simple Counter app built using the MVVM pattern.
+This project is for practicing MVVM to understand its structure and the use of repositories.
 
-Features
-- increment
-- decrement
+## ✨Features
+- Increment
+- Decrement
 
-Previews
+## 📱Previews
 <p align="center">
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/decrement.png" width="200"/>
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/increment.png" width="200"/>
 </p>
-<p>
-   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/rotate.png" width="200"/>
+<p align="center">
+  <img src="https://github.com/Android-practice/Counter-App/blob/master/images/rotate.png" height="200"/>
 </p>
 
+---
 
+## Key Concept
 
-Key Concept
+### MVVM
+MVVM stands for Model - View - ViewModel.
+It separates responsibilities to make the code easier to understand, maintain, and test.
 
-MVVM 
-MVVM stands for Model - View - ViewModel
-separate the task so make codes easier to understand & maintain & test
+#### 1. Model
+- Handles the data and business logic of the app.
+- Retrieves and stores data.
+- Processes the data if needed.
 
-1. Model
-   - data & business logic of the app
-   - retrieving & storing data
-   - process the data if it 
+#### 2. View
+- Represents the UI of the app.
+- Handles user interactions.
 
-2. View
-   - UI of the app (interact with user)
+#### 3. ViewModel
+- Acts as a bridge between the Model and the View.
+- Takes data from the Model, applies UI logic, and formats it for display in the View.
 
-3. ViewModel
-   - bridge between Model & View
-      -> take data from the Model, applies UI logic and formats it for display in the view
-
-
-MVVM : View Model
-manager that handles the communication between app's data & UI
-ALSO! respect(consider) the lifecycle of the app's activity or fragment while handling data
+### MVVM: ViewModel
+The ViewModel manages the communication between the app's data and its UI.
+It also respects the lifecycle of the app's activity or fragment while handling data.
 
 ```kotlin
-   class MyViewModel : ViewModel() { // extends ViewModel
-       
-       //
-   }
+class MyViewModel : ViewModel() {
+    // ViewModel logic here
+}
 ```
 
 ```kotlin
-   class MainActivity : AppCompatActivity() {
-       private val myViewModel : MyViewModel by viewModels() // usually initialized in an activity or fragment
-   }
-
+class MainActivity : AppCompatActivity() {
+    private val myViewModel: MyViewModel by viewModels() // Usually initialized in an activity or fragment
+}
 ```
 
-why is viewModel important?
-1. lifecycle awareness : ViewModel is designed to store and manage UI-related data in a lifecycle-conscious way
-It allows data to survive configuration changes (ex. screen rotations)
+#### Why is ViewModel important?
+1. **Lifecycle Awareness**
+   - ViewModel is designed to store and manage UI-related data in a lifecycle-conscious way.
+   - It allows data to survive configuration changes (e.g., screen rotations).
 
+```
+💡 **Tip 1:**
+Without using ViewModel, variables are re-initialized when configuration changes occur.
+This is because Activities or Fragments are recreated during events like screen rotations.
+-> Old instance (Activity/Fragment) is destroyed → New instance is created → All previous variables are lost.
+```
 
-**[bulb emoji]tips1** 
-without ViewModel pattern, variables are automatically initialized when configuration changes
-this is because Activity or Fragment in android recreated when that kind of changes happen
-: screen rotations -> old instance(activity/fragment) are destroyed -> new instance created -> all variables that old instance has are gone and new variables are initiallized with initial value
+### So how does ViewModel retain data?
+- ViewModel lasts longer than Activity/Fragment.
+- It is stored inside the **ViewModelStore** (a memory storage similar to the Application instance) and returned via the **ViewModelProvider**.
 
-then how can viewModel keep the data?
-ViewModel last longer than Activity/Fragment 
-because it is stored inside the "ViewModelStore"(which is an storage in the memory) like Application instance)
-and returned by "ViewModelProvider"
+2. **Separation of Concerns**
+   - ViewModel keeps UI code clean and focused on presenting data (e.g., formatting).
 
-2. separation of concerns : 
-ViewModel helps to keep UI code simple and focused on presenting data (ex. formatting.. )
+```
+💡 **Tip 2:**
+- ViewModel is not a replacement for `onSaveInstanceState`; it doesn't handle all types of configuration changes.
+- ViewModel should never hold references to Views, Activities, Fragments, or Contexts (to avoid memory leaks).
+```
 
+### Why MVVM?
+1. **Separation of Concerns**
+   - Clear separation between UI, business logic, and data.
+   - Each component has a distinct responsibility, making the code more organized and easier to maintain.
 
-**[bulb emoji]tips2**
-- ViewModel is not a replacement for "onSaveInstanceState"; it doesn't handle all types of configuration changes
-- ViewModel should never contains references to Views, Activities, Fragment or any Context( can lead memory leaks)
+2. **Testability**
+   - Each component can be tested independently (e.g., test ViewModel without UI or data).
 
-why mvvm?
-1. separation of concerns
-    - clear separation between UI/business logic/data
-    - ensures that each components has a distinct responsibility(organized & easy to maintain)
-2. testability
-    - can test each component independently(test ViewModel without UI/data)
-3. reusability
-    - decoupled, can reuse the same view model across different views or platforms
+3. **Reusability**
+   - Since components are decoupled, the same ViewModel can be reused across different views or platforms.
 
+---
 
-Repository
-Repository is a class that acts as a clean API for data access to the rest of the app(particularly when following the mvvm)
-it abstracts origin of the data(where it came from)
+## Repository
+A Repository is a class that serves as a clean API for data access across the app—especially when following the MVVM pattern.
+It abstracts the origin of data (e.g., local DB, network, web).
 
-various data sources(network sources, local db,web..) - repository - app(viewModel)
-1)farm 2)market 3) ... - supplier - restaurant
+Think of it like:
+- **Sources**: Farm, Market, etc.
+- **Supplier**: Repository
+- **App (ViewModel)**: Restaurant
 
-if there is supplier between source and app
-app doesn't need to care/know every time when sources it self/deliver method/etc are changed
+With a supplier in place, the app doesn't need to worry about the source, delivery method, or any changes in how the data is fetched.
 
+### Why use Repository?
+1. **Decoupling**
+   - The repository decouples data sources from the rest of the app.
+   - ViewModel interacts only with the repository and doesn't care about where the data comes from.
 
-why use repository?
-1. decoupling : 
-   - repository allow for decoupling of the data sources from the rest of the app.
-   - ViewModel interacts with a repository, and it doesn't need to know where the data came from.
-2. data aggregation
-   - repository can manage and coordinate data from multiple sources, providing clean API(Application Programming Interfaces)
-3. offline capability 
-   - repository can cache network data (work offline)
+2. **Data Aggregation**
+   - Repository can manage and coordinate multiple data sources, providing a clean API.
 
-   
-Additional Info : APIs
-APIs(Application Programming Interfaces) are sets of rules and protocols that allow one software application to interact with another.
-(doesn't necessarily mean backend api) 
-they define the methods and data formats that applications can use to communicate with each other
+3. **Offline Capability**
+   - Repository can cache network data to enable offline functionality.
 
-In simpler terms, API is a menu in a restaurant, request is an order, response is the dish that served to you 
+---
+
+## Additional Info: APIs
+APIs (Application Programming Interfaces) are sets of rules and protocols that allow one software component to interact with another.
+
+APIs define methods and data formats that applications can use to communicate.
+
+In simpler terms:
+- API : Restaurant menu
+- Request : Placing an order
+- Response : Dish served to you
+
