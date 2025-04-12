@@ -11,12 +11,7 @@ This project is for practicing MVVM to understand its structure and the use of r
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/decrement.png" width="200"/>
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/increment.png" width="200"/>
 </p>
-<p align="center">
-<<<<<<< HEAD
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/rotate.png" height="200"/>
-=======
-  <img src="https://github.com/Android-practice/Counter-App/blob/master/images/rotate.png" width="200"/>
->>>>>>> counter-app/master
 </p>
 
 ---
@@ -61,15 +56,12 @@ class MainActivity : AppCompatActivity() {
    - ViewModel is designed to store and manage UI-related data in a lifecycle-conscious way.
    - It allows data to survive configuration changes (e.g., screen rotations).
 
-<<<<<<< HEAD
+
 ```
-=======
->>>>>>> counter-app/master
 💡 **Tip 1:**
 Without using ViewModel, variables are re-initialized when configuration changes occur.
 This is because Activities or Fragments are recreated during events like screen rotations.
 -> Old instance (Activity/Fragment) is destroyed → New instance is created → All previous variables are lost.
-<<<<<<< HEAD
 ```
 
 ### So how does ViewModel retain data?
@@ -83,17 +75,12 @@ So how does ViewModel retain data?
 2. **Separation of Concerns**
    - ViewModel keeps UI code clean and focused on presenting data (e.g., formatting).
 
-<<<<<<< HEAD
 ```
 💡 **Tip 2:**
 - ViewModel is not a replacement for `onSaveInstanceState`; it doesn't handle all types of configuration changes.
 - ViewModel should never hold references to Views, Activities, Fragments, or Contexts (to avoid memory leaks).
 ```
-=======
-💡 **Tip 2:**
-- ViewModel is not a replacement for `onSaveInstanceState`; it doesn't handle all types of configuration changes.
-- ViewModel should never hold references to Views, Activities, Fragments, or Contexts (to avoid memory leaks).
->>>>>>> counter-app/master
+
 
 ### Why MVVM?
 1. **Separation of Concerns**
