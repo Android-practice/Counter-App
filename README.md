@@ -11,6 +11,7 @@ This project is for practicing MVVM to understand its structure and the use of r
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/decrement.png" width="200"/>
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/increment.png" width="200"/>
 </p>
+<p>
   <img src="https://github.com/Android-practice/Counter-App/blob/master/images/rotate.png" height="200"/>
 </p>
 
@@ -65,15 +66,13 @@ This is because Activities or Fragments are recreated during events like screen 
 ```
 
 ### So how does ViewModel retain data?
-=======
-
-So how does ViewModel retain data?
->>>>>>> counter-app/master
 - ViewModel lasts longer than Activity/Fragment.
 - It is stored inside the **ViewModelStore** (a memory storage similar to the Application instance) and returned via the **ViewModelProvider**.
 
+
 2. **Separation of Concerns**
    - ViewModel keeps UI code clean and focused on presenting data (e.g., formatting).
+
 
 ```
 💡 **Tip 2:**
@@ -125,13 +124,6 @@ APIs (Application Programming Interfaces) are sets of rules and protocols that a
 APIs define methods and data formats that applications can use to communicate.
 
 In simpler terms:
-<<<<<<< HEAD
 - API : Restaurant menu
 - Request : Placing an order
 - Response : Dish served to you
-=======
-- API = Restaurant menu
-- Request = Placing an order
-- Response = Dish served to you
->>>>>>> counter-app/master
-
